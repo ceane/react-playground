@@ -1,0 +1,52 @@
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	display: -webkit-flex;
+	display: flex;
+	font: 300 12pt "Helvetica Neue", Arial, sans-serif;
+}
+#mount {
+	display: -webkit-inline-flex;
+	display: inline-flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+	color: #ccc;
+	font-size: 32pt;
+}
+#mount.mounted {
+	color: #000;
+}
+#code {
+	border-right: 1px solid #e4e4e4;
+	position: relative;
+}
+#code:before {
+	content: '';
+	display: block;
+	width: 1ch;
+	height: 100%;
+	background: rgba(255, 144, 120, 0.62);
+	position: absolute;
+	top: 0;
+	left: 81ch;
+	z-index: 9999;
+	mix-blend-mode: multiply;
+}
+#mount, #code {
+	width: 50%;
+	height: 100%;
+	-webkit-flex: 1 0 auto;
+	flex: 1 0 auto;
+}
+.CodeMirror {
+	width: 100%;
+	height: 100%;
+}
