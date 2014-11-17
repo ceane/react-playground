@@ -1,25 +1,23 @@
 #React JS Playground
+Starter for beginners exploring React JS. Compiles JSX realtime. Feel free to use ES6 (to the capabilities of 6to5).
 
-###Get started today exploring React. It’s fun:
+###Get started today exploring React. Copy and paste any of the examples in the editor, or make your own creation. It’s fun:
 
 __ES6 Flavor with Object literals__
 ```javascript
-  var React = window.React;
+var React = window.React;
 
-	var Component = React.createClass({
-		render() {
-			return (
-				<h1>Hello World</h1>
-			);
-		}
-	});
-	
-	var mount = document.getElementById(‘mount’);
-	React.renderComponent(<Component />, mount);
+var Component = React.createClass({
+	render() {
+		return (
+			<h1>Hello World</h1>
+		);
+	}
+});
+
+var mount = document.getElementById(‘mount’);
+React.renderComponent(<Component />, mount);
 ```
-
-Starter for beginners exploring React JS. Compiles JSX realtime. Feel free to
-use ES6 (to the capabilities of 6to5).
 
 __Canvas with React JS__
 ```javascript
@@ -74,6 +72,67 @@ var mount = document.getElementById('mount');
 React.render(<Canvas width={300} height={300} />, mount);
 ```
 
+__Creepy Eye Ball__
+```javascript
+var React = window.React;
+
+var EyeBall = React.createClass({
+	
+	getDefaultProps() {
+		return {
+			width: 300,
+			height: 300,
+			pupilWidth: 40,
+			pupilHeight: 40
+		}
+	},
+
+	getInitialState() {
+		return {
+			xOffset: ( this.props.width / 2 ) - ( this.props.pupilWidth / 2 )
+		}
+	},
+	
+	handleMouseMovement(e) {
+		var x = e.pageX - e.target.offsetLeft;
+	
+		this.setState({ xOffset: x });
+	},
+	
+	render() {
+		var style = {
+			width: this.props.width,
+			height: this.props.height,
+			borderRadius: '50%',
+			background: 'white',
+			boxShadow: 'inset 0 0 50px rgba(0, 0, 0, .1)',
+			position: 'relative'
+		};
+		
+		var pupil = {
+			width: this.props.pupilWidth,
+			height: this.props.pupilHeight,
+			borderRadius: '50%',
+			background: 'black',
+			MsTransform: 'translateY(-50%)',
+			WebkitTransform: 'translateY(-50%)',
+      transform: 'translateY(-50%)',
+      position: 'relative',
+      top: '50%',
+			left: this.state.xOffset
+		};
+		
+		return (
+			<div onMouseMove={this.handleMouseMovement} style={style}>
+				<div style={pupil}></div>
+			</div>
+		);
+	}
+});
+
+var mount = document.getElementById('mount');
+React.render(<EyeBall />, mount);
+```
 
 ##Getting started
 * Download or clone the repo
